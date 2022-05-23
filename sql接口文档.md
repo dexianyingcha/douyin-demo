@@ -35,7 +35,7 @@
 `Get_Follow_List(User_id string)` ；返回结果：用户粉丝id列表 []string;若失败，返回错误信息
 - 取消关注：输入：用户id string，取消关注id string
 `Delete_Fans(User_id string, to_user_id string)`;若失败，返回错误信息
-### 2.3 视频信息表
+### 2.3 视频信息表(Video-list)
 - 新增视频:将新的视频插入数据表：输入:用户id string, 视频id string, Video_url string
   `New_Video(db *gorm.DB, User_id string, Video_id string, Video_url string)`;若失败，返回错误信息 
 - 从视频点赞表中获取和更新到视频点赞数:输入：视频id string
@@ -44,7 +44,7 @@
 - 更新视频评论数：用视频评论表获取视频的评论数，同时更新到视频信息表;输入：视频id string
   `Get_and_Update_Comment_Count(Video_id string)`
 返回结果：视频评论数 int
-### 2.4 视频点赞表
+### 2.4 视频点赞表(User_like)
 - 新增点赞信息：将用户点赞信息插入点赞表：输入：用户id string，视频id string
   `Like_This_Video(User_id string, Video_id string)`;若失败，返回错误信息 
 - 获取全部点赞用户ID的列表：输入：视频id string
@@ -53,7 +53,7 @@
   `Get_Like_List(User_id string)` ；返回结果：用户点赞的视频id列表 []string;若失败，返回错误信息
 - 取消点赞：从表中删除点赞信息 输入：输入：用户id string，视频id string
   `Unlike_This_Video(User_id string, Video_id string)`;若失败，返回错误信息
-### 2.5 视频评论表
+### 2.5 视频评论表(Video_comment)
 - 新增评论：将用户对视频的评论加入数据表：输入：视频id string，用户id string，评论 string
   `New_comment(Video_id string, Commenter_id string, Comment string)`
 - 获取评论：获取视频的全部评论和评论者的id列表；输入：视频id
