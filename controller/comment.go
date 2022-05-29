@@ -1,0 +1,33 @@
+package controller
+
+import (
+	"github.com/RaymondCode/simple-demo/dao"
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
+
+type CommentListResponse struct {
+	Response
+	CommentList []Comment `json:"comment_list,omitempty"`
+}
+
+// CommentAction no practical effect, just check if token is valid
+func CommentAction(c *gin.Context) {
+	user := User{}
+	token := c.Query("token")
+
+	dao.DB.Where("token=?",token).Find(&user).Count(&count)
+	if count == 0{
+		c.JSON(http.StatusOK, Response{StatusCode: 1, StatusMsg: "User doesn't exist"})
+	}else if count == 1{
+		c.JSON(http.StatusOK, Response{StatusCode: 0})
+	}
+}
+
+//// CommentList all videos have same demo comment list
+//func CommentList(c *gin.Context) {
+//	c.JSON(http.StatusOK, CommentListResponse{
+//		Response:    Response{StatusCode: 0},
+//		CommentList: DemoComments,
+//	})
+//}
