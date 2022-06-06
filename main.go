@@ -2,9 +2,13 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"simple-demo/model"
 )
 
 func main() {
+	// 引用数据库
+	model.Conn()
+
 	r := gin.Default()
 
 	initRouter(r)
